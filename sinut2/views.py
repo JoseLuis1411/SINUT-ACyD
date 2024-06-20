@@ -6,6 +6,8 @@ from django.http import  HttpResponse
 from django.contrib import messages
 from apps.Usuario.models import usuarios
 
+from django.contrib.auth import logout
+
 def menu(request):
     return render (request, "menu.html")
 
@@ -64,11 +66,17 @@ def loginACyD(request):
                 
                 # Redirigir según el tipo de usuario
                 if user.idTipoUsuario_id == 6:
-                    return redirect('/homealumno/')
+                    next_url = request.GET.get('next', '/homealumno/')
+                    return redirect(next_url)
                 elif user.idTipoUsuario_id == 4:
-                    return redirect('/homeprofesor/')
+                    next_url = request.GET.get('next', '/homeprofesor/')
+                    return redirect(next_url)
                 elif user.idTipoUsuario_id == 33:
-                    return redirect('/homeadmin/')
+                    next_url = request.GET.get('next', '/homeadmin/')
+                    return redirect(next_url)
+                elif user.idTipoUsuario_id == 25:
+                    next_url = request.GET.get('next', '/homeculturales/')
+                    return redirect(next_url)
                 else:
                     messages.error(request, 'Tipo de usuario no reconocido')
                     return redirect('/LoginACyD/')
@@ -83,3 +91,6 @@ def loginACyD(request):
     
     return render(request, 'loginACyD.html')
 
+def logout_view(request):
+    logout(request)
+    return redirect('/LoginACyD/')

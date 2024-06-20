@@ -24,7 +24,7 @@ from apps.Usuario.views import *
 from . import views
 
 #ACyD
-from sinut2.views import loginACyD
+from sinut2.views import loginACyD, logout_view
 from apps.ACyD.views import *
 
 #Importaciones para los archivos
@@ -75,6 +75,7 @@ urlpatterns = [
     #views ACyD
     path('LoginACyD/', loginACyD, name='loginACyD'),
 
+    path('logout/', logout_view, name='logout'),
 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
