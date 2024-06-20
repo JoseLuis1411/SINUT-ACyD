@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.Alumno',
     'apps.Empleado',
     'django_extensions',
+    'apps.ACyD',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +87,18 @@ WSGI_APPLICATION = 'sinut2.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'sinut_bd',
+        'USER': 'postgres',
+        'PASSWORD': 'fer1234',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432'
+    }
+}
+
+"""
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sinut_bd',
         'USER': 'root',
@@ -94,6 +107,7 @@ DATABASES = {
 
     }
 }
+"""
 
 """
 DATABASES = {

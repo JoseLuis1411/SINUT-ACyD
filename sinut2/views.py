@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.http import  HttpResponse
 
-
+#para mis funciones ACtD
+from django.contrib import messages
+from apps.Usuario.models import usuarios
 
 def menu(request):
     return render (request, "menu.html")
@@ -40,5 +42,44 @@ def historialpagos(request):
 
 
 
-#views reportes alumnos
+#views ACyD
+# Vista del login para ACyD
+def loginACyD(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # Buscar usuario en la tabla 'usuarios'
+        try:
+            user = usuarios.objects.get(usuario=username)
+        except usuarios.DoesNotExist:
+            user = None
+        
+        if user is not None:
+            # Verificar la contraseña
+            if password == user.contraseña:
+                # Contraseña correcta, guardar datos en la sesión manualmente
+                request.session['user_id'] = user.idUsuario
+                request.session['user_type'] = user.idTipoUsuario_id
+                
+                # Redirigir según el tipo de usuario
+                if user.idTipoUsuario_id == 6:
+                    return redirect('/homealumno/')
+                elif user.idTipoUsuario_id == 4:
+                    return redirect('/homeprofesor/')
+                elif user.idTipoUsuario_id == 33:
+                    return redirect('/homeadmin/')
+                else:
+                    messages.error(request, 'Tipo de usuario no reconocido')
+                    return redirect('/LoginACyD/')
+            else:
+                # Contraseña incorrecta
+                messages.error(request, 'Usuario o contraseña incorrectos')
+                return redirect('/LoginACyD/')
+        else:
+            # Usuario no encontrado
+            messages.error(request, 'Usuario o contraseña incorrectos')
+            return redirect('/LoginACyD/')
+    
+    return render(request, 'loginACyD.html')
 
