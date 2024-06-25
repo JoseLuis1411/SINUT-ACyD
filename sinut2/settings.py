@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'sinut2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-"""
+""" """
 
 DATABASES = {
     'default': {
@@ -98,9 +98,9 @@ DATABASES = {
     }
 }
 
-"""
 
-""" """
+
+""" 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -111,7 +111,7 @@ DATABASES = {
 
     }
 }
-
+"""
 
 """
 DATABASES = {
