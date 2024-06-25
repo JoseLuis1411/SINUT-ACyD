@@ -31,3 +31,10 @@ def admin_home(request):
 @login_required_custom(user_type=25)
 def culturaes_home(request):
     return render(request, 'ACyD/culturalesACyD.html')  
+
+
+#registro de actividades 
+
+
+def registro_actividades(request):
+    return render(request, 'ACyD/registroActividades.html')
