@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from functools import wraps
+from .models import dias, horarios, Actividades
+from apps.Empleado.models import empleados
 
 # Create your views here.
 
@@ -35,6 +37,9 @@ def culturaes_home(request):
 
 #registro de actividades 
 
-
+#funcion para llenar los desplegables del formulario de registro
 def registro_actividades(request):
-    return render(request, 'ACyD/registroActividades.html')
+    Dias = dias.objects.all() #metraigo los dias de la base de datos
+    Horarios = horarios.objects.all()
+    Empleados = empleados.objects.all() #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
+    return render(request, '', {'Dias':Dias, 'Horarios': Horarios, 'Empleados': Empleados})

@@ -17,3 +17,4 @@ class Actividades(models.Model):
     idMaestro = models.ForeignKey('Empleado.empleados', on_delete=models.CASCADE)
     idDia = models.ForeignKey('dias', on_delete=models.CASCADE)
     idHorario = models.ForeignKey('horarios', on_delete=models.CASCADE)
+    
