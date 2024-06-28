@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.http import  HttpResponse
 
-#para mis funciones ACtD
+#para mis funciones ACyD
 from django.contrib import messages
 from apps.Usuario.models import usuarios
 
