@@ -1,18 +1,22 @@
 
     
-    /* ===== LOGIN PAGE ===== */
-
+    /* ===== LOGIN PAGE ===== */SS
 
     .logo{
+      justify-content: center;
       text-align: center;
       padding-top: 5%;
       padding-bottom: 5%;
-      
-
+    }
+    .row{
+      justify-content: center;
+      text-align: center;
     }
     .alid{
-      
       padding-top: 5%;
+      display: flex;
+      justify-content: center;
+
     }
 
     .blue{
@@ -81,7 +85,7 @@
         border-radius: 5px;
         -webkit-transition: all .3s ease;
         transition: all .3s ease;
-        background-color: #fff;
+        background-color: #ffffff;
         color: #000000;
         font-weight: 400;
         position: relative;
