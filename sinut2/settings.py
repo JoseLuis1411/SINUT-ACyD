@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'apps.Alumno',
     'apps.Empleado',
     'django_extensions',
-    'apps.ACyD',
 ]
 
 MIDDLEWARE = [
@@ -85,22 +84,6 @@ WSGI_APPLICATION = 'sinut2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-"""
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sinut_bd',
-        'USER': 'postgres',
-        'PASSWORD': 'fer1234',
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432'
-    }
-}
-
-"""
-
-""" """
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -111,7 +94,6 @@ DATABASES = {
 
     }
 }
-
 
 """
 DATABASES = {
@@ -176,6 +158,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-#ACyD
-LOGIN_URL = '/LoginACyD/'
