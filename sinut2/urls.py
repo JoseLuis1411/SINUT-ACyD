@@ -23,6 +23,10 @@ from apps.Persona.views import *
 from apps.Usuario.views import *
 from . import views
 
+#ACyD
+from sinut2.views import loginACyD, logout_view
+from apps.ACyD.views import *
+
 #Importaciones para los archivos
 from django.conf import settings
 from django.conf.urls.static import static
@@ -42,6 +46,8 @@ urlpatterns = [
     path('', include('apps.Reportes.urls')),
     path('', include('apps.Alumno.urls')),
     path('', include('apps.Empleado.urls')),
+    #ACyD
+    path('', include('apps.ACyD.urls')),
     
     
     
@@ -66,6 +72,10 @@ urlpatterns = [
     path('hpagos', historialpagos),
 
 
+    #views ACyD
+    path('LoginACyD/', loginACyD, name='loginACyD'),
+
+    path('logout/', logout_view, name='logout'),
 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
