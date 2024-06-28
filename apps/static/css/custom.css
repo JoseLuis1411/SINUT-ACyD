@@ -13,6 +13,11 @@ body, html {
      padding:0px;
 }
 
+.login{
+    background-color: #003263;
+
+}
+
 
 h1, h2, h3, h4, h6, .h1, .h2, .h3, .h4 {
     font-weight: 400;
@@ -49,10 +54,10 @@ p {
 }
 
 .cardp{
-
+    border-radius: 2px;
     padding-top: 10%;
     padding-bottom: 10%;
-   
+    background-color: white;
 }
 
 .cardpadding{
@@ -242,15 +247,14 @@ p {
 
 
 .btnr{
-    float: right;
     background-color:#003263;
     color: #ffffff;
     border: #ffffff;
-
+    justify-content: center;
 }
 
 .btns{
-    float: left;
+    float: right;
     background-color:#00A886;
     border: #ffffff;
     color: #ffffff;
@@ -424,7 +428,7 @@ a:focus {
 
 .form {
     margin-bottom: 20px;
-    text-align: left; 
+    text-align:left;
 }
 
 .form-label {
@@ -557,7 +561,7 @@ a:focus {
 
 @media screen and (max-width: 1582px) {
     .container-user {
-        width: 35%; 
+        width: 40%; 
         height: 70%;
         margin: 50px auto; 
     }
@@ -570,8 +574,9 @@ a:focus {
     .btn {
         float: none; 
         margin-top: 15px; 
-        float: right;
+        float:none;
     }
+    
 
     .material-icons-form-user {
         font-size: 200px; 
@@ -580,7 +585,7 @@ a:focus {
 
 @media screen and (max-width: 768px) {
     .container-user {
-        width: 70%; 
+        width: 50%; 
         height: 70%;
         margin: 50px auto; 
     }
@@ -593,7 +598,7 @@ a:focus {
     .btn {
         float: none; 
         margin-top: 15px; 
-        float: right;
+        float: none;
     }
 
     .material-icons-form {
@@ -603,13 +608,16 @@ a:focus {
 
 @media screen and (max-width: 576px) {
     .container-user {
-        width: 90%; 
+        width: 80%; 
         padding: 10px; 
+        margin: 50px auto; 
+
     }
 
     .btn {
+        width: 100px;
         padding: 8px 30px; 
-        float: right;
+        
     }
 
     .material-icons-form {
@@ -622,20 +630,20 @@ a:focus {
 
 @media screen and (max-width: 1582px) {
     .container-uni {
-        width: 90%; 
+        width: 100%; 
         height: 85%;
-        margin: 50px auto; 
+        text-align: center;
     }
 
     .form-label {
-        display: block; 
+        display: center; 
         margin-bottom: 5px;
     }
 
     .btn {
         float: none; 
         margin-top: 15px; 
-        float: right;
+        float: center;
     }
 
     .material-icons-form {
@@ -1077,7 +1085,7 @@ a:focus {
 
 
 
-.card {
+.card{
     display: inline-block;
     position: relative;
 	border:none!important;
@@ -1086,7 +1094,6 @@ a:focus {
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
     border-radius: 6px;
     color: rgba(0,0,0, 0.87);
-    background: #fff;
 }
 
 .card-stats .card-header {
