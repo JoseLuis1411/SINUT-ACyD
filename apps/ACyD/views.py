@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from functools import wraps
-from .models import dias, horarios, Actividades
+from .models import dias, horarios, actividadesACyD
 from apps.Empleado.models import empleados
 
 # Create your views here.
@@ -43,3 +43,4 @@ def registro_actividades(request):
     Horarios = horarios.objects.all()
     Empleados = empleados.objects.all() #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
     return render(request, '', {'Dias':Dias, 'Horarios': Horarios, 'Empleados': Empleados})
+
