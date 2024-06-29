@@ -3,6 +3,11 @@
 {% load static %}
 {% block content %}
 <div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h1-ACyD">Registro de Actividades</h1>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -51,21 +56,21 @@
                                 <label class="custom-label form-label">Selecciona horarios para la clase</label>
                                 {%for horario in Horarios %}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check1" name="intereses" value="{{horario.idHorario}}">
+                                    <input class="form-check-input" type="checkbox" id="check1" name="horariosClase" value="{{horario.idHorario}}">
                                     <label class="form-check-label custom-label" for="check1">{{horario.horario}}</label>
                                 </div>
                                 {% endfor%}
                             </div>
                             <div class="form-group col-md-6">
-                            <label class="custom-label form-label" for="inputProfesor">Periodo</label>
-                                <select id="inputProfesor" class="form-control custom-input" name="profesor" required>
+                            <label class="custom-label form-label" for="inputPeriodo">Periodo</label>
+                                <select id="inputPeriodo" class="form-control custom-input" name="periodo" required>
                                     <option selected>Seleccione un periodo</option>
                                     <option value="1">Opción 1</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btnr">ENVIAR</button>
+                            <button type="submit" class="btn btn-primary btnr fijo">ENVIAR</button>
                         </div>
                     </form>
                 </div>
@@ -78,4 +83,16 @@
         </div> <!-- Fin de la card body -->
     </div>
 </div>
+
+<script>
+//Script para validar que se selccione al menos un checkbox
+function validarFormulario() {
+    var checkboxes = document.querySelectorAll('input[name="horariosClase"]:checked');
+    if (checkboxes.length < 1) {
+        alert("Debe seleccionar al menos una opción.");
+        return false; // Evita que se envíe el formulario
+    }
+    return true; // Permite que se envíe el formulario
+}
+</script>
 {% endblock %}
