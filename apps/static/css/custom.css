@@ -246,7 +246,6 @@ p {
     background-color:#003263;
     color: #ffffff;
     border: #ffffff;
-    width: 130px;
 }
 
 .btns{
@@ -1566,12 +1565,14 @@ footer .copyright {
     margin: 1% auto; 
 }
 
+/*Color especial para la pagina principal del alumno donde no esta escrito a ninguna extracurricular*/
 .no-regitrado{
     color: #FF3131;
 }
 
-.noFijo{
-    width: auto !important;
+/*A los botones normales les da un ancho fijo*/
+.fijo{
+    width: 130px !important;
 }
 
 /*Responsive imagen formularios*/
@@ -1587,7 +1588,20 @@ footer .copyright {
     }
 }
 
+.btn-danger{
+    background-color: transparent;
+    border: none;
+    color: #FF3131;
+}
 
+.btn-danger:hover{
+    color: #c82333;
+    background-color: transparent;
+    transform: scale(1.001);
+}
+
+
+/*Los del formulario*/
 .form-group{
     margin: 30px 0px 0px;
     padding: 0px 8px;
