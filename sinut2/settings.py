@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gf@98z)z$ztluj2s_djq6sa25-3tc75b-0+r$1_o(+ctw_o+8%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.85', 'localhost', '127.0.0.1']
 
 #para las alertas desde sweet alert 
 

@@ -71,4 +71,8 @@ def guardar_actividades(request):
     if actividad:
         guardada = 1
 
-    return render(request, '' , {'guardada', guardada})
+    return render(request, 'ACyD/actividadesRegistradas.html' , {'guardada', guardada})
+
+
+def mostrar_actividades(request):
+    return render(request, 'ACyD/actividadesRegistradas.html') 
