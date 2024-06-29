@@ -44,7 +44,7 @@ def registro_actividades(request):
     Horarios = horarios.objects.all()
     Maestros = empleados.objects.all() #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
     Periodos = periodo.objects.all() #me traigo todos los periodos sin hacer ningun filtro aun 
-    return render(request, '', {'Dias':Dias, 'Horarios': Horarios, 'Maestros': Maestros, 'Periodos': Periodos})
+    return render(request, 'ACyD/agregarActividades.html', {'Dias':Dias, 'Horarios': Horarios, 'Maestros': Maestros, 'Periodos': Periodos})
 
 #funcion para guardar la actividad con los datos que se reciban del POST
 #Ahora solo guarda de una por una falta la programacion para que guarde las de todo un dia 

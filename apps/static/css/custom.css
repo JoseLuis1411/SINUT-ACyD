@@ -1531,3 +1531,31 @@ footer .copyright {
 
   
   
+
+/* ---------------------------------------------------
+    ESTILOS ESPECIICOS ACyD
+----------------------------------------------------- */
+
+.img-container {
+    text-align: center;
+    width: 100%;
+}
+
+.imagen-conejos {
+    transform: scale(2.5);
+}
+
+
+/*Responsive imagen formularios*/
+
+@media only screen and (max-width: 768px){
+    .imagen-conejos{
+        display: none;
+    }
+}
+
+
+.form-group{
+    margin: 30px 0px 0px;
+    padding: 0px 8px;
+}
