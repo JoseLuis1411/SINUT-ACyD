@@ -56,14 +56,23 @@
                                 <label class="custom-label form-label">Selecciona horarios para la clase</label>
                                 {%for horario in Horarios %}
                                 <div class="form-check">
+<<<<<<< HEAD
                                     <input class="form-check-input" type="checkbox" id="check1" name="horariosClase" value="{{horario.idHorario}}">
+=======
+                                    <input class="form-check-input" type="checkbox" id="check1" name="intereses" value="{{horario.idHorario}}">
+>>>>>>> 9dce5d3 (Se agregaron lso horarios que se agregan automaticamente, dias de la semana y el campo periodo)
                                     <label class="form-check-label custom-label" for="check1">{{horario.horario}}</label>
                                 </div>
                                 {% endfor%}
                             </div>
                             <div class="form-group col-md-6">
+<<<<<<< HEAD
                             <label class="custom-label form-label" for="inputPeriodo">Periodo</label>
                                 <select id="inputPeriodo" class="form-control custom-input" name="periodo" required>
+=======
+                            <label class="custom-label form-label" for="inputProfesor">Periodo</label>
+                                <select id="inputProfesor" class="form-control custom-input" name="profesor" required>
+>>>>>>> 9dce5d3 (Se agregaron lso horarios que se agregan automaticamente, dias de la semana y el campo periodo)
                                     <option selected>Seleccione un periodo</option>
                                     <option value="1">Opción 1</option>
                                 </select>
