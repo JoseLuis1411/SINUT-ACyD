@@ -1,3 +1,4 @@
 apps/static/css/
 apps/static/js/
 *.pyc
+__pycache__/
