@@ -99,8 +99,13 @@ DATABASES = {
 }
 
 
+<<<<<<< HEAD
 """ 
 
+=======
+
+"""
+>>>>>>> 7052231afafed41c728917abf41a0ce677e544e2
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -111,11 +116,13 @@ DATABASES = {
 
     }
 }
-
 """
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7052231afafed41c728917abf41a0ce677e544e2
 """
 DATABASES = {
     'default': {

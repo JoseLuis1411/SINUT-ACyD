@@ -34,7 +34,9 @@
                                 <label class="custom-label form-label" for="inputProfesor">Profesores</label>
                                 <select id="inputProfesor" class="form-control custom-input" name="profesor" required>
                                     <option selected>Seleccione un profesor</option>
-                                    <option value="1">Opción 1</option>
+                                    {% for maestro in Maestros %}
+                                        <option value="{{maestro.idEmpleado}}">{{maestro.idPersona.nombre}} {{ maestro.idPersona.ape1 }} {{ maestro.idPersona.ape2 }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
@@ -63,10 +65,12 @@
                                 {% endfor%}
                             </div>
                             <div class="form-group col-md-6">
-                            <label class="custom-label form-label" for="inputPeriodo">Periodo</label>
+                            <label class="custom-label form-label" for="inputProfesor">Periodo</label>
                                 <select id="inputPeriodo" class="form-control custom-input" name="periodo" required>
                                     <option selected>Seleccione un periodo</option>
-                                    <option value="1">Opción 1</option>
+                                    {%for periodo in Periodos%}
+                                        <option value="{{periodo.idPeriodo}}">{{periodo.idPeriodo}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
