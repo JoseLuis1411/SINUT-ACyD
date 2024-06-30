@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'sinut2.wsgi.application'
 
 
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -99,13 +100,8 @@ DATABASES = {
 }
 
 
-<<<<<<< HEAD
 """ 
 
-=======
-
-"""
->>>>>>> 7052231afafed41c728917abf41a0ce677e544e2
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -116,13 +112,9 @@ DATABASES = {
 
     }
 }
+
 """
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 7052231afafed41c728917abf41a0ce677e544e2
 """
 DATABASES = {
     'default': {

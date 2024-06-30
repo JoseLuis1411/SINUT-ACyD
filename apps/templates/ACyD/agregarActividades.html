@@ -42,14 +42,9 @@
                             <div class="form-group col-md-6">
                                 <label class="custom-label form-label" for="inputDiaSemana">Dia de clase</label>
                                 <select id="inputDiaSemana" class="form-control custom-input" name="dia" required>
-                                    <option selected>Seleccione un día de la semana</option>
-                                    <option value="lunes">Lunes</option>
-                                    <option value="Martes">Martes</option>
-                                    <option value="Miercoles">Miercoles</option>
-                                    <option value="Jueves">Jueves</option>
-                                    <option value="Viernes">Viernes</option>
-                                    <option value="Sabado">Sabado</option>
-                                    <option value="Domingo">Domingo</option>
+                                    {%for dia in Dias%}
+                                        <option value="{{dia.idDia}}">{{dia.dia}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>

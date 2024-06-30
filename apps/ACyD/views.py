@@ -43,13 +43,8 @@ def registro_actividades(request):
     #instancias
     Dias = dias.objects.all() #metraigo los dias de la base de datos
     Horarios = horarios.objects.all()
-<<<<<<< HEAD
-    Maestros = empleados.objects.all() #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
-    Periodos = periodo.objects.all() #me traigo todos los periodos sin hacer ningun filtro aun 
-=======
     Maestros = empleados.objects.filter(idArea=2) #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
     Periodos = periodo.objects.all().order_by('-idPeriodo') #me traigo todos los periodos sin hacer ningun filtro aun 
->>>>>>> 7052231afafed41c728917abf41a0ce677e544e2
     return render(request, 'ACyD/agregarActividades.html', {'Dias':Dias, 'Horarios': Horarios, 'Maestros': Maestros, 'Periodos': Periodos})
 
 #funcion para guardar la actividad con los datos que se reciban del POST
@@ -62,7 +57,7 @@ def guardar_actividades(request):
         cupo = request.POST.get('cupos')
         id_maestro = request.POST.get('profesor')
         id_Dia = request.POST.get('dia')
-        id_horario = request.POST.get('intereses')
+        id_horario = request.POST.get('horariosClase')
         id_periodo = request.POST.get('periodo')
         
         #instancias
