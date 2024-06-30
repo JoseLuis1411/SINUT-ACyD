@@ -88,8 +88,8 @@ def guardar_actividades(request):
         #instancias
         ActiviadesCyD = actividadesACyD.objects.all()
         return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0, 'ActiviadesCyD': ActiviadesCyD})
-    
+
 def mostrar_actividades(request):
     #instancias
     ActiviadesCyD = actividadesACyD.objects.all()
-    return render(request, 'ACyD/actividadesRegistradas.html')
+    return render(request, 'ACyD/actividadesRegistradas.html') 
