@@ -81,10 +81,15 @@ def guardar_actividades(request):
         if actividad:
             guardada = 1
 
-        return render(request, '' , {'guardada': guardada})
+        return render(request, 'ACyD/actividadesRegistradas.html' , {'guardada': guardada})
     
     #Si entra a la pagina para ver las activiades registradas entra aqui
     else:
         #instancias
         ActiviadesCyD = actividadesACyD.objects.all()
-        return render(request, '', {'guardada': 0, 'ActiviadesCyD': ActiviadesCyD})
+        return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0, 'ActiviadesCyD': ActiviadesCyD})
+    
+def mostrar_actividades(request):
+    #instancias
+    ActiviadesCyD = actividadesACyD.objects.all()
+    return render(request, 'ACyD/actividadesRegistradas.html')
