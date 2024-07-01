@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from functools import wraps
+from django.db.models import Max, Q
 from .models import dias, horarios, actividadesACyD
 from apps.Empleado.models import empleados
 from apps.Alumno.models import periodo
@@ -43,53 +44,93 @@ def registro_actividades(request):
     #instancias
     Dias = dias.objects.all() #metraigo los dias de la base de datos
     Horarios = horarios.objects.all()
-    Maestros = empleados.objects.filter(idArea=2) #me traigo todos los empleados un sin filtras solo los maestros de extracurriculares
-    Periodos = periodo.objects.all().order_by('-idPeriodo') #me traigo todos los periodos sin hacer ningun filtro aun 
+    Maestros = empleados.objects.filter(idArea=2) #me solo los empleados que son PA de extracurriculares
+    Periodos = periodo.objects.all().order_by('-idPeriodo') #me traigo todos los periodos del mas reciente al mas antiguo
     return render(request, 'ACyD/agregarActividades.html', {'Dias':Dias, 'Horarios': Horarios, 'Maestros': Maestros, 'Periodos': Periodos})
 
 #funcion para guardar la actividad con los datos que se reciban del POST
-#Ahora solo guarda de una por una falta la programacion para que guarde las de todo un dia 
 def guardar_actividades(request):
-    
-    #Si se va guardar alguna actividad entra el if
+    #Si se va guardar alguna actividad y existe POST entra el if
     if request.method == 'POST':
         actividad = request.POST.get('nombre')
         cupo = request.POST.get('cupos')
         id_maestro = request.POST.get('profesor')
         id_Dia = request.POST.get('dia')
-        id_horario = request.POST.get('horariosClase')
+        #id_horario = request.POST.get('horariosClase')
+        id_horarios = request.POST.getlist('horariosClase[]', [])
         id_periodo = request.POST.get('periodo')
         
         #instancias
         idMaestro = empleados.objects.get(idEmpleado=id_maestro)
         idDia = dias.objects.get(idDia = id_Dia)
-        idHorario = horarios.objects.get(idHorario = id_horario)
         idPeriodo = periodo.objects.get(idPeriodo = id_periodo)
+        #idHorario = horarios.objects.get(idHorario = id_horario)
         
-        actividad = actividadesACyD.objects.create(
-            actividad=actividad,
-            cupo=cupo,
-            idMaestro=idMaestro,
-            idDia=idDia,
-            idHorario=idHorario,
-            idPeriodo=idPeriodo
-        )
+        for id_horario in id_horarios:
+            #instancia
+            idHorario = horarios.objects.get(idHorario = id_horario)
+            actividad = actividadesACyD.objects.create(
+                actividad=actividad,
+                cupo=cupo,
+                idMaestro=idMaestro,
+                idDia=idDia,
+                idHorario=idHorario,
+                idPeriodo=idPeriodo
+            )
+            
+            #limpio las variables y las lleno nuevamente para que entren bien nuevamente al for
+            actividad = None
+            cupo = None
+            idMaestro = None
+            idDia = None
+            idPeriodo = None
+            idHorario = None
+            
+            actividad = request.POST.get('nombre')
+            cupo = request.POST.get('cupos')
+            id_maestro = request.POST.get('profesor')
+            id_Dia = request.POST.get('dia')
+            #id_horario = request.POST.get('horariosClase')
+            #id_horarios = request.POST.getlist('horariosClase[]', [])
+            id_periodo = request.POST.get('periodo')
+            
+            #instancias
+            idMaestro = empleados.objects.get(idEmpleado=id_maestro)
+            idDia = dias.objects.get(idDia = id_Dia)
+            idPeriodo = periodo.objects.get(idPeriodo = id_periodo)
+            #idHorario = horarios.objects.get(idHorario = id_horario)
         
         #Variable para que se compruebe si se guardo o no la actividad en la base de datos si es 1 se guardo correctamete
-        guardada = 0
+        Guardada = '0'
         
         if actividad:
-            guardada = 1
+            Guardada = '1'
 
-        return render(request, 'ACyD/actividadesRegistradas.html' , {'guardada': guardada})
+        #return render(request, 'ACyD/actividadesRegistradas.html' , {'guardada': guardada})
+        return redirect('/actividadesRegistradas/?Guardada' + Guardada)
+        
     
-    #Si entra a la pagina para ver las activiades registradas entra aqui
+    #Si no existe POST
     else:
-        #instancias
-        ActiviadesCyD = actividadesACyD.objects.all()
-        return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0, 'ActiviadesCyD': ActiviadesCyD})
+        
+        #return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0})
+        return redirect('/actividadesRegistradas/?Guardada' + '0')
     
 def mostrar_actividades(request):
-    #instancias
-    ActiviadesCyD = actividadesACyD.objects.all()
-    return render(request, 'ACyD/actividadesRegistradas.html')
+    #recibo la variable para saber si se guardo o no la consulta que tambien servira para saber si datos se eliminaron o actualizaron
+    guardada = request.GET.get('Guardada', '0') # si no recivo get a guardada le asigno 0 
+    
+    # Obtener el ID máximo de la tabla periodos
+    id_periodo_max = periodo.objects.aggregate(max_id=Max('idPeriodo'))['max_id']
+    
+    #instancias 
+    ActsActivas = actividadesACyD.objects.filter(idPeriodo__activo=1)  #me traigo las activiades del periodoactual 
+    ActsMaxPeriodo = actividadesACyD.objects.filter(idPeriodo_id=id_periodo_max )#me traigo las activiades del periodo proximo con el Max
+    
+    # Combinar ambos QuerySets en uno solo
+    Acts = ActsActivas.union(ActsMaxPeriodo, all=False) # all=False para asegurar que no haya duplicados 
+    
+    #mando la variable guardada en 0 para no tener problemas en el html cuando la quiera usar para mandar mensajes de exito
+    return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0, 'Acts': Acts, 'guardada': guardada})
+
+
