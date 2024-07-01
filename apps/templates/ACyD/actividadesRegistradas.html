@@ -1,0 +1,102 @@
+{% extends "plantillaPadre.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h1-ACyD">Actividades culturales y deportivas</h1>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12 ">
+            <form method="post" class="d-flex justify-content-end">
+                {% csrf_token %}
+                <div class="d-flex flex-wrap justify-content-end">
+                    <button title="Agregar actividad" type="submit" formaction="{% url 'registroActs' %}" class="btn btn-primary btnr mx-2"><i class="material-icons iconhr">add_box</i></button>
+                </div>
+            </form>
+            <h4 class="d-flex" >Registradas</h4>
+        </div>
+    </div>
+    <div class="row mb-4 d-flex justify-content-center">
+        <div class="card m-4" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card m-4" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card m-4" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card m-4" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card m-4" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+
+</div>
+
+{% endblock %}
