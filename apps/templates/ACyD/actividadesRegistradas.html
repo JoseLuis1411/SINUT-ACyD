@@ -11,92 +11,119 @@
     </div>
     <div class="row mb-4">
         <div class="col-12 ">
-            <form method="post" class="d-flex justify-content-end">
-                {% csrf_token %}
-                <div class="d-flex flex-wrap justify-content-end">
-                    <button title="Agregar actividad" type="submit" formaction="{% url 'registroActs' %}" class="btn btn-primary btnr mx-2"><i class="material-icons iconhr">add_box</i></button>
-                </div>
-            </form>
+            <div class="d-flex flex-wrap justify-content-end">
+                <a title="Agregar actividad"href="{% url 'registroActs' %}" class="btn btn-primary btnr mx-2"><i class="material-icons iconhr">add_box</i></a>
+            </div>
             <h4 class="d-flex" >Registradas</h4>
         </div>
     </div>
     <div class="row mb-4 d-flex justify-content-center">
+
+        {%for actividad in ActividadesACyD%}
         <div class="card m-4" style="width: 18rem;">
             <div class="card-body d-flex flex-column">
-                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
-                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
+                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">{{actividad.cupo}}</h6>
+                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>{{actividad.actividad}}</strong></h4>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">{{actividad.idMaestro.idPersona.nombre}} {{actividad.idMaestro.idPersona.ape1}} {{actividad.idMaestro.idPersona.ape2}}</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">{{actividad.idDia.dia}}</h6>
+                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">{{actividad.idHorario.horario}}</h6>
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a href="" class="btn btn-primary btnr fijo me-2" >EDITAR</a>
+                    <button type="submit" class="btn btn-danger" onclick="confirmDelete('{{ actividad.idActividadACyD }}')">Eliminar</button>
                 </div>
             </div>
         </div>
-
-        <div class="card m-4" style="width: 18rem;">
-            <div class="card-body d-flex flex-column">
-                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
-                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
 
-        <div class="card m-4" style="width: 18rem;">
-            <div class="card-body d-flex flex-column">
-                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
-                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card m-4" style="width: 18rem;">
-            <div class="card-body d-flex flex-column">
-                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
-                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card m-4" style="width: 18rem;">
-            <div class="card-body d-flex flex-column">
-                <h6 class="card-subtitle mb-2 text-body-secondary d-flex justify-content-end" title="Cupos">25</h6>
-                <h4 class="card-title mb-3 d-flex justify-content-center" title="Nombre de la actividad"><strong>Futbol 7</strong></h4>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Nombre del profesor">Juan Carlos Nuñez</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Dia de la actividad">Lunes</h6>
-                <h6 class="card-subtitle text-body-secondary d-flex justify-content-center" title="Horario de la actividad">13:20 a 14:10</h6>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary btnr fijo me-2">EDITAR</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-        </div>
-       
     </div>
 
 
 </div>
+
+
+<script>
+    //Modal de exito o fallo al registrar una actividad
+    document.addEventListener('DOMContentLoaded', function() {
+        var mostrarModal = {{ guardada|default:0 }}; //Verifcia valor de variable de sesion 
+        if (mostrarModal == 1) {
+            Swal.fire({
+                title: "Actividad registrada con exito",
+                icon: "success"
+            });
+            /*
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Actividad registrada con exito",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            */
+        }
+
+        if (mostrarModal == 2) {
+            Swal.fire({
+                icon: "error",
+                title: "Algo salio mal",
+                text: "Por favor intenta de nuevo",
+            });
+        }
+    });
+</script>
+
+<script>
+//Alerta de confirmacion al eliminar actividad
+function confirmDelete(activityId) {
+    Swal.fire({
+        title: "¿Seguro que quieres eliminar la actividad?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/eliminarActividad/${activityId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then(data => {
+                if (data.status === 'ok') {
+                    Swal.fire(
+                        "¡Eliminada!",
+                        "La actividad ha sido eliminada exitosamente",
+                        "success"
+                    ).then(() => {
+                        location.reload(); // Reload the page to see the changes
+                    });
+                } else {
+                    Swal.fire(
+                        "Error!",
+                        "Hubo un problema al eliminar la actividad.",
+                        "error"
+                    );
+                }
+            }).catch(error => {
+                Swal.fire(
+                    "Error!",
+                    "Hubo un problema al eliminar la actividad.",
+                    "error"
+                );
+            });
+        }
+    });
+}
+</script>
+
+
+
 
 {% endblock %}

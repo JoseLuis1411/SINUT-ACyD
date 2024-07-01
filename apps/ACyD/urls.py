@@ -7,6 +7,6 @@ urlpatterns = [
     path('homeadmin/', views.admin_home, name='homeadmin'),
     path('homeculturales/', views.culturaes_home, name='homeculturales'),
     path('registroActs/', views.registro_actividades, name='registroActs'),
-    path('guardarActividades/', views.guardar_actividades, name='guardarActividades'),
-    path('actividadesRegistradas/', views.mostrar_actividades, name='actividadesRegistradas'),
+    path('guardarActividades/', views.guardar_actividades, name='guardarActividades'), 
+    path('eliminarActividad/<int:id>/', views.eliminar_actividad, name='eliminar_actividad'),
 ]

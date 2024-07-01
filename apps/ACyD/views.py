@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from functools import wraps
+from django.http import JsonResponse
 from .models import dias, horarios, actividadesACyD
 from apps.Empleado.models import empleados
 from apps.Alumno.models import periodo
@@ -66,30 +67,33 @@ def guardar_actividades(request):
         idHorario = horarios.objects.get(idHorario = id_horario)
         idPeriodo = periodo.objects.get(idPeriodo = id_periodo)
         
-        actividad = actividadesACyD.objects.create(
-            actividad=actividad,
-            cupo=cupo,
-            idMaestro=idMaestro,
-            idDia=idDia,
-            idHorario=idHorario,
-            idPeriodo=idPeriodo
-        )
-        
-        #Variable para que se compruebe si se guardo o no la actividad en la base de datos si es 1 se guardo correctamete
-        guardada = 0
-        
-        if actividad:
-            guardada = 1
-
-        return render(request, 'ACyD/actividadesRegistradas.html' , {'guardada': guardada})
+        try:
+            actividad = actividadesACyD.objects.create(
+                actividad=actividad,
+                cupo=cupo,
+                idMaestro=idMaestro,
+                idDia=idDia,
+                idHorario=idHorario,
+                idPeriodo=idPeriodo
+            )
+            
+            request.session['guardada'] = 1 #Indicnado que se registro con exito para despues enviar modal
+        except Exception as e:
+            request.session['guardada'] = 2 #Indicnado que se registro fallidamente para despues enviar modal
+         
+        return redirect('guardarActividades')   
     
-    #Si entra a la pagina para ver las activiades registradas entra aqui
-    else:
-        #instancias
-        ActiviadesCyD = actividadesACyD.objects.all()
-        return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': 0, 'ActiviadesCyD': ActiviadesCyD})
 
-def mostrar_actividades(request):
-    #instancias
-    ActiviadesCyD = actividadesACyD.objects.all()
-    return render(request, 'ACyD/actividadesRegistradas.html') 
+    #Haya o no envio de fomrulario se carga la lista de actividades
+    ActividadesACyD = actividadesACyD.objects.select_related('idMaestro__idPersona', 'idDia', 'idHorario', 'idPeriodo').all()
+
+    guardada = request.session.pop('guardada', None)  # Recupera y elimina 'guardada' de la sesión, retorna 9 si no existe
+    return render(request, 'ACyD/actividadesRegistradas.html', {'guardada': guardada, 'ActividadesACyD': ActividadesACyD})
+    
+
+def eliminar_actividad(request, id):
+    if request.method == 'DELETE':
+        actividad = get_object_or_404(actividadesACyD, idActividadACyD=id)
+        actividad.delete()
+        return JsonResponse({'status': 'ok'})
+    return JsonResponse({'status': 'error'}, status=400)

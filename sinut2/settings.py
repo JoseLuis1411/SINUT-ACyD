@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'sinut2.wsgi.application'
 
 
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -98,9 +98,9 @@ DATABASES = {
         'DATABASE_PORT': '5432'
     }
 }
+"""
 
 
-""" 
 
 DATABASES = {
     'default': {
@@ -112,8 +112,6 @@ DATABASES = {
 
     }
 }
-
-"""
 
 """
 DATABASES = {
